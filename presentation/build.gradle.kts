@@ -1,75 +1,76 @@
 plugins {
-  id(Config.Plugins.androidLibrary)
-  id(Config.Plugins.kotlinAndroid)
-  id(Config.Plugins.kotlinKapt)
-  id(Config.Plugins.hilt)
-  id(Config.Plugins.navigationSafeArgs)
+  alias(libs.plugins.android.library)
+  alias(libs.plugins.android.kotlin)
+  alias(libs.plugins.kotlin.ksp)
+  alias(libs.plugins.dagger.hilt.android)
+  alias(libs.plugins.navigation.safeargs)
 }
 
 android {
-  compileSdk = Config.AppConfig.compileSdkVersion
+  namespace = "com.mina_mikhail.base_mvvm.presentation"
+  compileSdk = 34
 
   defaultConfig {
-    minSdk = Config.AppConfig.minSdkVersion
+    minSdk = 21
 
     vectorDrawables.useSupportLibrary = true
   }
 
   buildTypes {
-    getByName("release") {
+    release{
       proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
     }
   }
 
-  dataBinding {
-    isEnabled = true
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
+
+  kotlinOptions {
+    jvmTarget = JavaVersion.VERSION_17.toString()
+  }
+
+  buildFeatures {
+    dataBinding = true
   }
 }
 
 dependencies {
 
   // Support
-  implementation(Libraries.appCompat)
-  implementation(Libraries.coreKtx)
-  implementation(Libraries.androidSupport)
+  implementation(libs.bundles.androidSupport)
 
   // Arch Components
-  implementation(Libraries.viewModel)
-  implementation(Libraries.lifeData)
-  implementation(Libraries.lifecycle)
-  implementation(Libraries.viewModelState)
+  implementation(libs.bundles.archComponents)
 
   // Kotlin Coroutines
-  implementation(Libraries.coroutinesCore)
-  implementation(Libraries.coroutinesAndroid)
+  implementation(libs.coroutinesCore)
+  implementation(libs.coroutinesAndroid)
 
   // UI
-  implementation(Libraries.materialDesign)
-  implementation(Libraries.navigationFragment)
-  implementation(Libraries.navigationUI)
-  implementation(Libraries.loadingAnimations)
-  implementation(Libraries.alerter)
-  implementation(Libraries.coil)
+  implementation(libs.loadingAnimations)
+  implementation(libs.alerter)
+  implementation(libs.coil)
 
   // Utils
-  implementation(Libraries.playServices)
-  implementation(Libraries.localization)
-  implementation(Libraries.permissions)
-  implementation(Libraries.gson)
+  implementation(libs.playServices)
+  implementation(libs.localization)
+  implementation(libs.permissions)
+  implementation(libs.gson)
 
   // Hilt
-  implementation(Libraries.hilt)
-  kapt(Libraries.hiltDaggerCompiler)
+  implementation(libs.hilt)
+  ksp(libs.hiltDaggerCompiler)
 
   // Map
-  implementation(Libraries.map)
-  implementation(Libraries.playServicesLocation)
-  implementation(Libraries.rxLocation)
+  implementation(libs.map)
+  implementation(libs.playServicesLocation)
 
   // Project Modules
-  implementation(project(Config.Modules.domain))
-  implementation(project(Config.Modules.prettyPopUp))
-  implementation(project(Config.Modules.actionChooser))
-  implementation(project(Config.Modules.appTutorial))
-  implementation(project(Config.Modules.imagesSlider))
+  implementation(projects.domain)
+  implementation(projects.prettyPopUp)
+  implementation(projects.actionChooser)
+  implementation(projects.appTutorial)
+  implementation(projects.imagesSlider)
 }

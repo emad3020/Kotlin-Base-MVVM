@@ -1,36 +1,38 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
-  id(Config.Plugins.androidApplication)
-  id(Config.Plugins.kotlinAndroid)
-  id(Config.Plugins.kotlinKapt)
-  id(Config.Plugins.navigationSafeArgs)
-  id(Config.Plugins.hilt)
+  alias(libs.plugins.android.application)
+  alias(libs.plugins.android.kotlin)
+  alias(libs.plugins.kotlin.ksp)
+  alias(libs.plugins.navigation.safeargs)
+  alias(libs.plugins.dagger.hilt.android)
+  alias(libs.plugins.googleServices)
 }
 
 android {
-  compileSdk = Config.AppConfig.compileSdkVersion
+  namespace = "com.mina_mikhail.base_mvvm"
+  compileSdk = 34
 
   defaultConfig {
-    applicationId = Config.AppConfig.appId
-    minSdk = Config.AppConfig.minSdkVersion
-    targetSdk = Config.AppConfig.compileSdkVersion
-    versionCode = Config.AppConfig.versionCode
-    versionName = Config.AppConfig.versionName
+    applicationId = "com.mina_mikhail.base_mvvm"
+    minSdk = 21
+    targetSdk = 34
+    versionCode = 1
+    versionName = "1.0"
 
     vectorDrawables.useSupportLibrary = true
     multiDexEnabled = true
-    testInstrumentationRunner = Config.AppConfig.testRunner
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
   buildTypes {
-    getByName("debug") {
-      resValue("string", "google_api_key", gradleLocalProperties(rootDir).getProperty("GOOGLE_API_KEY"))
+    debug{
+//       resValue("string", "google_api_key", gradleLocalProperties(rootDir).getProperty("GOOGLE_API_KEY"))
       manifestPlaceholders["appName"] = "@string/app_name_debug"
       manifestPlaceholders["appIcon"] = "@mipmap/ic_launcher_debug"
       manifestPlaceholders["appRoundIcon"] = "@mipmap/ic_launcher_debug_round"
 
-      buildConfigField("String", "API_BASE_URL", Config.Environments.debugBaseUrl)
+      buildConfigField("String", "API_BASE_URL", "http://url.to.server/api/")
     }
 
     signingConfigs {
@@ -42,32 +44,33 @@ android {
       }
     }
 
-    getByName("release") {
+    release{
       signingConfig = signingConfigs.getByName("releaseConfig")
 
       isMinifyEnabled = true
       isShrinkResources = true
 
-      resValue("string", "google_api_key", gradleLocalProperties(rootDir).getProperty("GOOGLE_API_KEY"))
+//      resValue("string", "google_api_key", gradleLocalProperties(rootDir).getProperty("GOOGLE_API_KEY"))
       manifestPlaceholders["appName"] = "@string/app_name"
       manifestPlaceholders["appIcon"] = "@mipmap/ic_launcher"
       manifestPlaceholders["appRoundIcon"] = "@mipmap/ic_launcher_round"
 
-      buildConfigField("String", "API_BASE_URL", Config.Environments.releaseBaseUrl)
+      buildConfigField("String", "API_BASE_URL", "http://url.to.server/api/")
     }
   }
 
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
   }
 
   kotlinOptions {
-    jvmTarget = "11"
+    jvmTarget = JavaVersion.VERSION_17.toString()
   }
 
-  dataBinding {
-    isEnabled = true
+  buildFeatures {
+    buildConfig = true
+    dataBinding = true
   }
 }
 
@@ -75,23 +78,20 @@ dependencies {
   implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
   // Networking
-  implementation(Libraries.retrofit)
-  implementation(Libraries.retrofitConverter)
-  implementation(Libraries.gson)
-  implementation(Libraries.interceptor)
-  implementation(Libraries.chuckLogging)
+  implementation(libs.bundles.networking)
 
   // Utils
-  implementation(Libraries.playServices)
-  implementation(Libraries.localization)
-  implementation(Libraries.multidex)
+
+  implementation(libs.playServices)
+  implementation(libs.localization)
+  implementation(libs.multidex)
 
   // Hilt
-  implementation(Libraries.hilt)
-  kapt(Libraries.hiltDaggerCompiler)
+  implementation(libs.hilt)
+  ksp(libs.hiltDaggerCompiler)
 
   // Project Modules
-  implementation(project(Config.Modules.domain))
-  implementation(project(Config.Modules.data))
-  implementation(project(Config.Modules.presentation))
+  implementation(projects.domain)
+  implementation(projects.data)
+  implementation(projects.presentation)
 }

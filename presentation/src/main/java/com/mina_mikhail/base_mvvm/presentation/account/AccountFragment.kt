@@ -83,6 +83,8 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
             hideLoading()
             handleApiError(it)
           }
+
+          else -> {}
         }
       }
     }

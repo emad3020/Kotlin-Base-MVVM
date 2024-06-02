@@ -1,16 +1,34 @@
-rootProject.name = "Kotlin-Base-MVVM"
+pluginManagement {
+  repositories {
+    google {
+      content {
+        includeGroupByRegex("com\\.android.*")
+        includeGroupByRegex("com\\.google.*")
+        includeGroupByRegex("androidx.*")
+      }
+    }
+    mavenCentral()
+    gradlePluginPortal()
+    maven(url = "https://jitpack.io")
+  }
+}
 
-// Include all the existent modules in the project
-rootDir
-  .walk()
-  .maxDepth(1)
-  .filter {
-    it.name != rootProject.name &&
-      (
-        it.name != "buildSrc" && it.isDirectory && file("${it.absolutePath}/build.gradle.kts").exists() ||
-          it.name != "buildSrc" && it.isDirectory && file("${it.absolutePath}/build.gradle").exists()
-        )
+@Suppress("UnstableApiUsage")
+dependencyResolutionManagement {
+  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+  repositories {
+    google()
+    mavenCentral()
+    maven(url = "https://jitpack.io")
   }
-  .forEach {
-    include(":${it.name}")
-  }
+}
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+rootProject.name = "Kotlin-Base-MVVM"
+include(":app")
+
+// Modules
+include(":domain",":data",":presentation",":prettyPopUp",
+  ":actionChooser",":appTutorial",":imagesSlider"
+  )

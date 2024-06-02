@@ -1,44 +1,34 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-buildscript {
-  repositories {
-    google()
-    mavenCentral()
-  }
-  dependencies {
-    classpath(Config.Dependencies.gradleVersion)
-    classpath(Config.Dependencies.kotlin)
-    classpath(Config.Dependencies.navigationSafeArgs)
-    classpath(Config.Dependencies.hilt)
-  }
-}
+import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
 plugins {
-  id(Config.Plugins.ktLint) version Versions.ktLint
+  alias(libs.plugins.android.application) apply false
+  alias(libs.plugins.android.library) apply false
+  alias(libs.plugins.android.kotlin) apply false
+  alias(libs.plugins.kotlin.ksp) apply false
+  alias(libs.plugins.kotlin.jvm) apply false
+  alias(libs.plugins.navigation.safeargs) apply false
+  alias(libs.plugins.ktlint) apply false
+  alias(libs.plugins.dagger.hilt.android) apply false
+  alias(libs.plugins.googleServices) apply false
+}
+
+buildscript {
+  dependencies {
+    classpath(libs.navigationSafeArgs)
+  }
 }
 
 subprojects {
-  apply(plugin = Config.Plugins.ktLint) // To apply ktLint to all included modules
+  apply(plugin = "org.jlleitschuh.gradle.ktlint") // To apply ktLint to all included modules
 
-  repositories {
-    mavenCentral()
-  }
-
-  configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+  configure<KtlintExtension> {
     debug.set(true)
   }
 }
 
-allprojects {
-  repositories {
-    google()
-    mavenCentral()
-    jcenter()
-    maven(url = Config.Dependencies.jitPackURL)
-  }
-}
 
 tasks.register("clean", Delete::class) {
-  delete(rootProject.buildDir)
+  delete(rootProject.layout.buildDirectory)
 }
 
 tasks.register("installGitHooks", Copy::class) {

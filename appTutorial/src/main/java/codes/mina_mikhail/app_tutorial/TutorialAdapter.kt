@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import codes.mina_mikhail.app_tutorial.TutorialAdapter.ImagesSliderViewHolder
-import codes.mina_mikhail.app_tutorial.databinding.ItemTutorialBinding
+import codes.mina_mikhail.tutorial.R
+import codes.mina_mikhail.tutorial.databinding.ItemTutorialBinding
 
 internal class TutorialAdapter(
   private var titleColor: Int,

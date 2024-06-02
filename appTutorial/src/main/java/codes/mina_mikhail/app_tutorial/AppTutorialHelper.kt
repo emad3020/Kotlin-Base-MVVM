@@ -18,6 +18,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import codes.mina_mikhail.tutorial.R
 import kotlinx.coroutines.delay
 
 class AppTutorialHelper private constructor(builder: Builder) : LifecycleObserver {

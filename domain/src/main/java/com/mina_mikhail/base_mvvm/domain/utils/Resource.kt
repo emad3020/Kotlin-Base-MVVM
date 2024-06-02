@@ -10,7 +10,7 @@ sealed class Resource<out T> {
     val message: String? = null
   ) : Resource<Nothing>()
 
-  object Loading : Resource<Nothing>()
+  data object Loading : Resource<Nothing>()
 
-  object Default : Resource<Nothing>()
+  data object Default : Resource<Nothing>()
 }

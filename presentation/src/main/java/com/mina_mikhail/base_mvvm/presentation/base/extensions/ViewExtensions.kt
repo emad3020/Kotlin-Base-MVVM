@@ -10,7 +10,6 @@ import android.widget.ProgressBar
 import androidx.annotation.ColorRes
 import androidx.constraintlayout.widget.Group
 import androidx.core.content.ContextCompat
-import androidx.databinding.BindingAdapter
 import coil.ImageLoader
 import coil.load
 import coil.request.ImageRequest
@@ -46,7 +45,6 @@ fun View.invisible() {
   }
 }
 
-@BindingAdapter("app:goneUnless")
 fun View.goneUnless(visible: Boolean) {
   visibility = if (visible) View.VISIBLE else View.GONE
   if (this is Group) {
@@ -93,7 +91,6 @@ fun View.showSnackBar(message: String, retryActionName: String? = null, action: 
   snackBar.show()
 }
 
-@BindingAdapter(value = ["app:loadImage", "app:progressBar"], requireAll = false)
 fun ImageView.loadImage(imageUrl: String?, progressBar: ProgressBar?) {
   if (imageUrl != null && imageUrl.isNotEmpty()) {
     val request = ImageRequest.Builder(context)
@@ -112,7 +109,7 @@ fun ImageView.loadImage(imageUrl: String?, progressBar: ProgressBar?) {
           setImageDrawable(result)
         }
       )
-      .listener(onError = { request: ImageRequest, _: Throwable ->
+      .listener(onError = { request, _ ->
         progressBar?.hide()
         setImageDrawable(request.error)
       })
@@ -126,9 +123,8 @@ fun ImageView.loadImage(imageUrl: String?, progressBar: ProgressBar?) {
   }
 }
 
-@BindingAdapter(value = ["app:loadCircleImage", "app:progressBar"], requireAll = false)
 fun ImageView.loadCircleImage(imageUrl: String?, progressBar: ProgressBar?) {
-  if (imageUrl != null && imageUrl.isNotEmpty()) {
+  if (!imageUrl.isNullOrEmpty()) {
     val request = ImageRequest.Builder(context)
       .data(imageUrl)
       .crossfade(true)
@@ -148,7 +144,7 @@ fun ImageView.loadCircleImage(imageUrl: String?, progressBar: ProgressBar?) {
           setImageDrawable(result)
         }
       )
-      .listener(onError = { request: ImageRequest, _: Throwable ->
+      .listener(onError = { request, _ ->
         progressBar?.hide()
         setImageDrawable(request.error)
       })
@@ -167,9 +163,8 @@ fun ImageView.loadCircleImage(imageUrl: String?, progressBar: ProgressBar?) {
   }
 }
 
-@BindingAdapter(value = ["app:loadRoundImage", "app:progressBar"], requireAll = false)
 fun ImageView.loadRoundImage(imageUrl: String?, progressBar: ProgressBar?) {
-  if (imageUrl != null && imageUrl.isNotEmpty()) {
+  if (!imageUrl.isNullOrEmpty()) {
     val request = ImageRequest.Builder(context)
       .data(imageUrl)
       .crossfade(true)
@@ -191,7 +186,7 @@ fun ImageView.loadRoundImage(imageUrl: String?, progressBar: ProgressBar?) {
           setImageDrawable(result)
         }
       )
-      .listener(onError = { request: ImageRequest, _: Throwable ->
+      .listener(onError = { request, _ ->
         progressBar?.hide()
         setImageDrawable(request.error)
       })
@@ -212,7 +207,6 @@ fun ImageView.loadRoundImage(imageUrl: String?, progressBar: ProgressBar?) {
   }
 }
 
-@BindingAdapter("load_drawable")
 fun loadDrawable(imageView: ImageView, drawable: Drawable?) {
   imageView.setImageDrawable(drawable)
 }

@@ -5,16 +5,17 @@ plugins {
 }
 
 android {
-  namespace = "com.mina_mikhail.base_mvvm.data"
+  namespace = "codes.mina_mikhail.pretty_pop_up"
   compileSdk = 34
 
   defaultConfig {
-    minSdk = 21
-  }
 
+    minSdk =  21
+  }
 
   buildTypes {
     release {
+      isMinifyEnabled = true
       proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
     }
   }
@@ -28,19 +29,12 @@ android {
     jvmTarget = JavaVersion.VERSION_17.toString()
   }
 
+  buildFeatures {
+    viewBinding = true
+  }
 }
 
 dependencies {
-
-  // Kotlin Coroutines
-  implementation(libs.coroutinesCore)
-  implementation(libs.coroutinesAndroid)
-
-  // Networking
-  implementation(libs.bundles.networking)
-
-  implementation(libs.javaInject)
-
-  // Project Modules
-  implementation(projects.domain)
+  implementation(libs.lifecycle)
+  implementation(libs.materialDesign)
 }

@@ -1,16 +1,16 @@
 plugins {
-  id(Config.Plugins.kotlinJvm)
+  alias(libs.plugins.kotlin.jvm)
 }
 
 java {
-  sourceCompatibility = JavaVersion.VERSION_11
-  targetCompatibility = JavaVersion.VERSION_11
+  sourceCompatibility = JavaVersion.VERSION_17
+  targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {
   // Kotlin Coroutines
-  implementation(Libraries.coroutinesCore)
-  implementation(Libraries.coroutinesAndroid)
+  implementation(libs.coroutinesCore)
+  implementation(libs.coroutinesAndroid)
 
-  implementation(Libraries.javaInject)
+  implementation(libs.javaInject)
 }

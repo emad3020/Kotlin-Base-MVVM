@@ -19,16 +19,13 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:gravity="center"
-      android:orientation="vertical"
-      android:visibility="@{baseViewModel.dataLoadingEvent ==  DataStatus.SHOW_DATA ? View.GONE : View.VISIBLE}"
-      >
+      android:orientation="vertical"     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        app:goneUnless="@{baseViewModel.dataLoadingEvent ==  DataStatus.NO_DATA}"
         tools:ignore="UseCompoundDrawables"
         >
 
@@ -56,7 +53,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        app:goneUnless="@{baseViewModel.dataLoadingEvent ==  DataStatus.NO_INTERNET}"
         tools:ignore="UseCompoundDrawables"
         >
 
@@ -86,7 +82,6 @@
         android:layout_height="@dimen/dimen70"
         android:layout_gravity="center"
         app:SpinKit_Color="@color/colorPrimary"
-        app:goneUnless="@{baseViewModel.dataLoadingEvent ==  DataStatus.LOADING}"
         />
 
   </LinearLayout>

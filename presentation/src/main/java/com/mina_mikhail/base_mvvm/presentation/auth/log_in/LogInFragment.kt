@@ -158,6 +158,8 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>() {
             hideLoading()
             handleApiError(it, retryAction = { viewModel.onLogInClicked() })
           }
+
+          else -> {}
         }
       }
     }
