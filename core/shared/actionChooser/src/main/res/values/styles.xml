@@ -2,12 +2,12 @@
 
   <style name="ChooserDialogBoldFont">
     <item name="android:textSize">@dimen/text_size16</item>
-    <item name="fontFamily">@font/poppins_bold</item>
+    <item name="fontFamily">@font/roboto_bold</item>
   </style>
 
   <style name="ChooserDialogRegularFont">
     <item name="android:textSize">@dimen/text_size14</item>
-    <item name="fontFamily">@font/poppins_light</item>
+    <item name="fontFamily">@font/roboto_regular</item>
   </style>
 
   <style name="ChooserDialogAnimation" parent="Theme.MaterialComponents.DayNight.Dialog.Bridge">
@@ -16,6 +16,14 @@
     <item name="colorPrimary">@color/colorGray</item>
 
     <item name="android:windowActivityTransitions">true</item>
+  </style>
+
+  <style name="ChooserStrokeButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <item name="android:textSize">@dimen/text_size14</item>
+    <item name="fontFamily">@font/roboto_regular</item>
+    <item name="strokeColor">@color/colorGray</item>
+    <item name="strokeWidth">1dp</item>
+    <item name="android:textColor">@color/colorDarkGray</item>
   </style>
 
 </resources>

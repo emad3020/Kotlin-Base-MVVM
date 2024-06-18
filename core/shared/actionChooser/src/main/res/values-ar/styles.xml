@@ -1,0 +1,22 @@
+<resources>
+
+  <style name="ChooserDialogBoldFont">
+    <item name="android:textSize">@dimen/text_size16</item>
+    <item name="fontFamily">@font/almarai_bold</item>
+  </style>
+
+  <style name="ChooserDialogRegularFont">
+    <item name="android:textSize">@dimen/text_size14</item>
+    <item name="fontFamily">@font/almarai_light</item>
+  </style>
+
+
+  <style name="ChooserStrokeButton" parent="Widget.MaterialComponents.Button.TextButton">
+    <item name="android:textSize">@dimen/text_size14</item>
+    <item name="fontFamily">@font/almarai_light</item>
+    <item name="strokeColor">@color/colorGray</item>
+    <item name="strokeWidth">1dp</item>
+    <item name="android:textColor">@color/colorDarkGray</item>
+  </style>
+
+</resources>

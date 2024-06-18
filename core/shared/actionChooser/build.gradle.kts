@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-  namespace = "codes.mina_mikhail.action_chooser"
+  namespace = "codes.core.shared.actionChooser"
   compileSdk = 34
 
   defaultConfig {
@@ -14,7 +14,7 @@ android {
   buildTypes {
     release {
       isMinifyEnabled = true
-      proguardFiles (getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+      proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
     }
   }
 
@@ -30,7 +30,6 @@ android {
   buildFeatures {
     viewBinding = true
   }
-
 }
 
 dependencies {
