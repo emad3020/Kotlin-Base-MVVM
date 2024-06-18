@@ -5,15 +5,19 @@ plugins {
 }
 
 android {
-  namespace = "codes.mina_mikhail.pretty_pop_up"
+  namespace = "codes.core.shared.prettyPopUp"
   compileSdk = 34
 
   defaultConfig {
 
-    minSdk =  21
+    minSdk = 21
   }
 
   buildTypes {
+    debug {
+      isMinifyEnabled = false
+    }
+
     release {
       isMinifyEnabled = true
       proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
@@ -25,6 +29,13 @@ android {
     targetCompatibility = JavaVersion.VERSION_17
   }
 
+  lint {
+    quiet = true
+    abortOnError = false
+    warningsAsErrors = true
+    disable += "Instantiatable"
+  }
+
   kotlinOptions {
     jvmTarget = JavaVersion.VERSION_17.toString()
   }
@@ -32,9 +43,14 @@ android {
   buildFeatures {
     viewBinding = true
   }
+
+  viewBinding.isEnabled = true
 }
 
 dependencies {
   implementation(libs.lifecycle)
   implementation(libs.materialDesign)
+
+  // Utils
+  implementation(libs.lottie)
 }

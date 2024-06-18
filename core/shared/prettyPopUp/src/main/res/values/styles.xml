@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="PrettyDialogBoldFont">
+    <item name="android:textSize">@dimen/text_size16</item>
+    <item name="fontFamily">@font/roboto_bold</item>
+  </style>
+
+  <style name="PrettyDialogRegularFont">
+    <item name="android:textSize">@dimen/text_size14</item>
+    <item name="fontFamily">@font/roboto_regular</item>
+  </style>
+
+  <style name="PrettyDialogMediumFont">
+    <item name="android:textSize">@dimen/text_size16</item>
+    <item name="fontFamily">@font/roboto_regular</item>
+  </style>
+
+  <style name="PrettyDialogAnimation" parent="Theme.Material3.DayNight.Dialog.Alert">    <item name="android:windowNoTitle">true</item>
+    <item name="colorPrimaryDark">@color/colorDarkGray</item>
+    <item name="colorPrimary">@color/colorGray</item>
+
+    <item name="android:windowActivityTransitions">true</item>
+  </style>
+
+
+  <style name="TextButtonStyle" parent="Widget.Material3.Button.TextButton">
+    <item name="android:textSize">@dimen/text_size16</item>
+    <item name="fontFamily">@font/roboto_bold</item>
+    <item name="cornerRadius">@dimen/dimen12</item>
+    <item name="android:padding">@dimen/dimen12</item>
+    <item name="android:textColor">@color/colorDarkGray</item>
+  </style>
+
+</resources>
