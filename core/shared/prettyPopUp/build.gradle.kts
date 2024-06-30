@@ -6,21 +6,17 @@ plugins {
 
 android {
   namespace = "codes.core.shared.prettyPopUp"
-  compileSdk = 34
+  compileSdk = Integer.valueOf("${rootProject.extra.get("compileSdk")}")
 
   defaultConfig {
 
-    minSdk = 21
+    minSdk = Integer.valueOf("${rootProject.extra.get("minSdk")}")
   }
 
   buildTypes {
-    debug {
-      isMinifyEnabled = false
-    }
-
     release {
       isMinifyEnabled = true
-      proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+      consumerProguardFiles("proguard-rules.pro")
     }
   }
 
@@ -38,10 +34,6 @@ android {
 
   kotlinOptions {
     jvmTarget = JavaVersion.VERSION_17.toString()
-  }
-
-  buildFeatures {
-    viewBinding = true
   }
 
   viewBinding.isEnabled = true

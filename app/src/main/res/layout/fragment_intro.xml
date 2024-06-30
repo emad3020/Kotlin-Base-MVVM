@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/backgroundGray"
+  android:gravity="center"
+  android:orientation="vertical"
+  android:padding="@dimen/activity_padding">
+
+  <ImageView
+    android:id="@+id/imageView3"
+    android:layout_width="@dimen/dimen100"
+    android:layout_height="@dimen/dimen100"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:srcCompat="@drawable/ic_app_logo"
+    tools:ignore="ContentDescription" />
+
+  <com.core.presentation.views.CoreButton
+    android:id="@+id/btn_logIn"
+    style="@style/TextMediumFont"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dimen16"
+    android:padding="10dp"
+    android:text="@string/log_in_sign_up"
+    android:textAllCaps="true"
+    android:textColor="@color/colorPrimaryDark"
+    android:textSize="@dimen/text_size16"
+    app:backgroundTint="@color/colorAccent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+  <com.core.presentation.views.CoreButton
+    style="@style/Widget.Material3.Button.TextButton"
+    android:id="@+id/btn_guest_mode"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dimen16"
+    android:padding="@dimen/dimen2"
+    app:loadingColor="@color/colorAccent"
+    android:textColor="@color/darkGray"
+    android:textSize="@dimen/text_size13"
+    app:layout_constraintEnd_toEndOf="@+id/btn_logIn"
+    app:layout_constraintStart_toStartOf="@+id/btn_logIn"
+    app:layout_constraintTop_toBottomOf="@+id/btn_logIn"
+    tools:text="This is intro to the app" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

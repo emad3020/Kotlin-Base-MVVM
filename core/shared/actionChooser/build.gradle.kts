@@ -5,10 +5,10 @@ plugins {
 
 android {
   namespace = "codes.core.shared.actionChooser"
-  compileSdk = 34
+  compileSdk = Integer.valueOf("${rootProject.extra.get("compileSdk")}")
 
   defaultConfig {
-    minSdk = 21
+    minSdk = Integer.valueOf("${rootProject.extra.get("minSdk")}")
   }
 
   buildTypes {

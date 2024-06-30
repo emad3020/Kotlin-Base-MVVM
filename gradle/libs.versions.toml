@@ -9,12 +9,12 @@ supportVersion = "1.0.0"
 lifecycle = "2.8.2"
 kotlinCoroutines = "1.7.3"
 retrofit = "2.9.0"
-gson = "2.10.1"
+serializationConverter = "1.0.0"
+serializationJson = "1.5.0"
 interceptor = "4.10.0"
 chuckLogging = "1.1.0"
 materialDesign = "1.12.0"
 androidNavigation = "2.7.7"
-loadingAnimations = "1.4.0"
 alerter = "7.2.4"
 coil = "2.4.0"
 gms-googleServices = "4.4.2"
@@ -29,6 +29,23 @@ ksp = "2.0.0-1.0.21"
 glide = "4.15.1"
 swiperefreshlayout = "1.1.0"
 photoView = "2.3.0"
+lottie = "6.1.0"
+leakCanary = "2.14"
+proguard = "8.3.37"
+zxing = "3.4.1"
+timber = "5.0.1"
+ssp = "1.1.1"
+
+# Pluto
+pluto = "2.1.6"
+
+# Room DB
+room = "2.6.1"
+
+# Testing
+junit = "4.13.2"
+androidx-test-ext-junit = "1.1.5"
+espresso-core = "3.5.1"
 
 [libraries]
 
@@ -37,8 +54,12 @@ appCompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 coreKtx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx"}
 androidSupport = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "supportVersion"}
 androidSwiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
+
 # Kotlin
 kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
+serializationJson = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serializationJson" }
+
 
 # Java
 javaInject = { group = "javax.inject", name = "javax.inject", version.ref = "javaInject" }
@@ -57,7 +78,7 @@ coroutinesAndroid = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutine
 # Networking
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofitConverter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+serializationConverter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter",version.ref = "serializationConverter" }
 interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "interceptor" }
 chuckLogging = { group = "com.readystatesoftware.chuck", name = "library", version.ref = "chuckLogging" }
 
@@ -66,7 +87,7 @@ materialDesign = { group = "com.google.android.material", name = "material", ver
 navigationSafeArgs = {group = "androidx.navigation",name = "navigation-safe-args-gradle-plugin", version.ref = "androidNavigation"}
 navigationFragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "androidNavigation" }
 navigationUI = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "androidNavigation" }
-loadingAnimations = { group = "com.github.ybq", name = "Android-SpinKit", version.ref = "loadingAnimations" }
+navigationRunTime = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "androidNavigation" }
 alerter = { group = "com.github.tapadoo", name = "alerter", version.ref = "alerter" }
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 
@@ -78,6 +99,12 @@ permissions = { group = "com.afollestad.assent", name = "core", version.ref = "p
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide"}
 glideCompiler = { group = "com.github.bumptech.glide", name = "ksp", version.ref = "glide"}
 photoView = { group = "com.github.chrisbanes", name = "PhotoView", version.ref = "photoView"}
+lottie = { group = "com.airbnb.android",name = "lottie", version.ref = "lottie" }
+leakCanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakCanary" }
+zxing = { module = "com.google.zxing:core", version.ref = "zxing" }
+timberLogger = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber"}
+android-ssp = { group = "com.intuit.ssp", name = "ssp-android", version.ref = "ssp"}
+android-sdp = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "ssp"}
 
 # Hilt
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltVersion" }
@@ -87,19 +114,43 @@ hiltDaggerCompiler = { group = "com.google.dagger", name = "hilt-android-compile
 map = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "map" }
 playServicesLocation = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 
+
+# Testing
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+hiltTesting = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltVersion" }
+hiltTestingCompiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltVersion" }
+
+
+# Pluto
+plutoDebug = { module = "com.plutolib:pluto", version.ref = "pluto" }
+plutoRelease = { module = "com.plutolib:pluto-no-op", version.ref = "pluto" }
+plutoPreferenceDebug = { module = "com.plutolib.plugins:preferences", version.ref = "pluto" }
+plutoPreferenceRelease = { module = "com.plutolib.plugins:preferences-no-op", version.ref = "pluto" }
+plutoRoomDebug = { module = "com.plutolib.plugins:rooms-db", version.ref = "pluto" }
+plutoRoomRelease = { module = "com.plutolib.plugins:rooms-db-no-op", version.ref = "pluto" }
+
+# Room DB
+room = { module = "androidx.room:room-runtime", version.ref = "room" }
+roomKotlinExtensions = { module = "androidx.room:room-ktx", version.ref = "room" }
+roomCompiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+r8 = { module = "com.android.tools:r8" , version.ref = "proguard" }
+
 [bundles]
 
 networking = [
-  "retrofit","retrofitConverter","gson","interceptor","chuckLogging"
+  "retrofit","retrofitConverter","serializationConverter","interceptor","chuckLogging"
 ]
 
-androidSupport = [
-  "appCompat","coreKtx","androidSupport"
-]
-
-archComponents = [ "viewModel","lifecycle","lifeData","viewModelState",
-  "materialDesign","navigationFragment","navigationUI"
-]
+archComponents = ["viewModel", "lifeData", "lifecycle", "viewModelState"]
+navigationComponent = ["navigationFragment", "navigationUI"]
+kotlinCoroutines = ["coroutinesCore", "coroutinesAndroid"]
+roomDB = ["room", "roomKotlinExtensions"]
+plutoDebug = ["plutoDebug", "plutoPreferenceDebug", "plutoRoomDebug"]
+plutoRelease = ["plutoRelease", "plutoPreferenceRelease", "plutoRoomRelease"]
+testing-unit = ["junit"]
+testing-ui = ["androidx-test-ext-junit", "espresso-core"]
 
 
 [plugins]
@@ -112,4 +163,6 @@ navigation-safeargs = { id = "androidx.navigation.safeargs", version.ref = "andr
 dagger-hilt-android = { id = "com.google.dagger.hilt.android" , version.ref = "hiltVersion" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktLint" }
 googleServices = { id = "com.google.gms.google-services", version.ref = "gms-googleServices"}
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
 

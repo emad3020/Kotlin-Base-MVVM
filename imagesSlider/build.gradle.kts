@@ -15,7 +15,7 @@ android {
   buildTypes {
     release {
       isMinifyEnabled = true
-      proguardFiles (getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+      proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
     }
   }
 
@@ -27,7 +27,6 @@ android {
   kotlinOptions {
     jvmTarget = JavaVersion.VERSION_17.toString()
   }
-
 
   buildFeatures {
     viewBinding = true

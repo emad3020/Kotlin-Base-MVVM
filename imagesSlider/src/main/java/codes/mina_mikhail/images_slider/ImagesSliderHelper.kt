@@ -88,7 +88,10 @@ class ImagesSliderHelper private constructor(builder: Builder) : LifecycleObserv
     viewPager = ViewPager2(activity)
 
     viewPager.apply {
-      val lp = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+      val lp = FrameLayout.LayoutParams(
+        ViewGroup.LayoutParams.MATCH_PARENT,
+        ViewGroup.LayoutParams.MATCH_PARENT
+      )
       layoutParams = lp
       clipChildren = false
       clipToPadding = false
@@ -100,7 +103,10 @@ class ImagesSliderHelper private constructor(builder: Builder) : LifecycleObserv
 
   private fun addViewPagerIndicator() {
     indicatorsContainer.apply {
-      val lp = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+      val lp = FrameLayout.LayoutParams(
+        ViewGroup.LayoutParams.MATCH_PARENT,
+        ViewGroup.LayoutParams.WRAP_CONTENT
+      )
       lp.gravity = Gravity.CENTER or Gravity.BOTTOM
       layoutParams = lp
       orientation = LinearLayout.HORIZONTAL
@@ -119,17 +125,21 @@ class ImagesSliderHelper private constructor(builder: Builder) : LifecycleObserv
     for (i in images.indices) {
       val tv = TextView(activity)
       tv.apply {
-        val lp = FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        val lp = FrameLayout.LayoutParams(
+          ViewGroup.LayoutParams.WRAP_CONTENT,
+          ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         lp.setMargins(5, 0, 5, 7)
         layoutParams = lp
         setText(R.string.dot)
         textSize = if (i == currentItem) 45f else 28f
         includeFontPadding = false
         setTextColor(
-          if (i == currentItem)
+          if (i == currentItem) {
             ContextCompat.getColor(context, activeIndicatorColor)
-          else
+          } else {
             ContextCompat.getColor(context, inActiveIndicatorColor)
+          }
         )
       }
 
@@ -140,7 +150,8 @@ class ImagesSliderHelper private constructor(builder: Builder) : LifecycleObserv
   }
 
   private fun setUpViewPagerAdapter() {
-    imagesAdapter = ImagesSliderAdapter { if (imageClickAction != null) imageClickAction else onImageClicked(it) }
+    imagesAdapter =
+      ImagesSliderAdapter { if (imageClickAction != null) imageClickAction else onImageClicked(it) }
 
     viewPager.adapter = imagesAdapter.apply { submitList(images) }
   }

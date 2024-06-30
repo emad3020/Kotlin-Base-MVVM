@@ -1,4 +1,5 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import com.android.build.api.variant.BuildConfigField
+
 
 plugins {
   alias(libs.plugins.android.application)
@@ -6,33 +7,46 @@ plugins {
   alias(libs.plugins.kotlin.ksp)
   alias(libs.plugins.navigation.safeargs)
   alias(libs.plugins.dagger.hilt.android)
-  alias(libs.plugins.googleServices)
+//  alias(libs.plugins.googleServices)
+}
+
+androidComponents {
+  onVariants {
+    it.buildConfigFields.apply {
+      put(
+        "API_BASE_URL",
+        BuildConfigField(
+          "String",
+          "\"http://url.to.server/api/\"",
+          "base Url"
+        )
+      )
+    }
+  }
 }
 
 android {
-  namespace = "com.mina_mikhail.base_mvvm"
-  compileSdk = 34
+  namespace = "com.mina.base.mvvm"
+  compileSdk = Integer.valueOf("${rootProject.extra.get("compileSdk")}")
 
   defaultConfig {
     applicationId = "com.mina_mikhail.base_mvvm"
-    minSdk = 21
-    targetSdk = 34
-    versionCode = 1
-    versionName = "1.0"
+    minSdk = Integer.valueOf("${rootProject.extra.get("minSdk")}")
+    targetSdk = Integer.valueOf("${rootProject.extra.get("compileSdk")}")
+    versionCode = Integer.valueOf("${rootProject.extra.get("versionCode")}")
+    versionName = rootProject.extra.get("versionName").toString()
 
     vectorDrawables.useSupportLibrary = true
     multiDexEnabled = true
-    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner = "${rootProject.extra.get("testRunner")}"
   }
 
   buildTypes {
-    debug{
+    debug {
 //       resValue("string", "google_api_key", gradleLocalProperties(rootDir).getProperty("GOOGLE_API_KEY"))
       manifestPlaceholders["appName"] = "@string/app_name_debug"
       manifestPlaceholders["appIcon"] = "@mipmap/ic_launcher_debug"
       manifestPlaceholders["appRoundIcon"] = "@mipmap/ic_launcher_debug_round"
-
-      buildConfigField("String", "API_BASE_URL", "http://url.to.server/api/")
     }
 
     signingConfigs {
@@ -44,7 +58,7 @@ android {
       }
     }
 
-    release{
+    release {
       signingConfig = signingConfigs.getByName("releaseConfig")
 
       isMinifyEnabled = true
@@ -54,8 +68,6 @@ android {
       manifestPlaceholders["appName"] = "@string/app_name"
       manifestPlaceholders["appIcon"] = "@mipmap/ic_launcher"
       manifestPlaceholders["appRoundIcon"] = "@mipmap/ic_launcher_round"
-
-      buildConfigField("String", "API_BASE_URL", "http://url.to.server/api/")
     }
   }
 
@@ -70,7 +82,7 @@ android {
 
   buildFeatures {
     buildConfig = true
-    dataBinding = true
+    viewBinding = true
   }
 }
 
@@ -82,7 +94,7 @@ dependencies {
 
   // Utils
 
-  implementation(libs.playServices)
+//  implementation(libs.playServices)
   implementation(libs.localization)
   implementation(libs.multidex)
 
@@ -90,8 +102,11 @@ dependencies {
   implementation(libs.hilt)
   ksp(libs.hiltDaggerCompiler)
 
-  // Project Modules
-  implementation(projects.domain)
-  implementation(projects.data)
-  implementation(projects.presentation)
+  // Core Modules
+  implementation(projects.core.shared.actionChooser)
+  implementation(projects.core.shared.prettyPopUp)
+  implementation(projects.core.shared.boardingPager)
+  implementation(projects.core.network)
+  implementation(projects.core.presentation)
+  implementation(projects.core.utils)
 }

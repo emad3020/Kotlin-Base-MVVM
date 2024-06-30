@@ -28,7 +28,18 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "Kotlin-Base-MVVM"
 include(":app")
 
+// Core Modules
+include(
+  ":core:presentation",":core:network",":core:utils"
+)
+
+// Shared Core Modules
+include(
+  ":core:shared:actionChooser",
+  ":core:shared:prettyPopUp",
+  ":core:shared:boardingPager",
+)
+
 // Modules
-include(":domain",":data",":presentation",":prettyPopUp",
-  ":actionChooser",":appTutorial",":imagesSlider"
-  )
+include(":imagesSlider")
+include(":core:config")
